@@ -14,5 +14,14 @@ with the basic feature: list, insert, update, delete
 * Command pattern
 * JSP, JSTL
 
+### Feature of the project
+The action being performed is taken from the map of commands, 
+the servlet path is taken as the key. 
+The map is collected by the Reflections library 
+from the "com.example.appweb.command.impl" package. 
+To add a new command, it is enough to add 
+a new implementation of the Command interface 
+and replace it in the package.
+
 ### Useful links
 * [JSP Servlet Hibernate Web Application](https://www.javaguides.net/2019/03/jsp-servlet-hibernate-web-application.html)
