@@ -10,13 +10,14 @@ import java.util.Properties;
  * Factory of hibernate session factory.
  */
 public class HibernateUtil {
-    private static final SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
-    static {
+    public HibernateUtil() {
         Properties settings = new Properties();
         settings.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQL95Dialect");
         settings.put("hibernate.connection.driver_class", "org.postgresql.Driver");
-        settings.put("hibernate.connection.url", "jdbc:postgresql://localhost:5432/appusers");
+//        settings.put("hibernate.connection.url", "jdbc:postgresql://localhost:5432/appusers");
+        settings.put("hibernate.connection.url", "jdbc:postgresql://pg12-usr:5432/appusers");
         settings.put("hibernate.connection.username", "postgres");
         settings.put("hibernate.connection.password", "postgres");
         settings.put("hibernate.hbm2ddl.auto", "update");
@@ -29,10 +30,7 @@ public class HibernateUtil {
         sessionFactory = configuration.buildSessionFactory();
     }
 
-    private HibernateUtil() {
-    }
-
-    public static SessionFactory getSessionFactory() {
+    public SessionFactory getSessionFactory() {
         return sessionFactory;
     }
 }

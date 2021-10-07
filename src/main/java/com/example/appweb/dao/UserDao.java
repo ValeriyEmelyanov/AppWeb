@@ -12,12 +12,18 @@ import java.util.List;
  */
 public class UserDao {
 
+    private final HibernateUtil hibernateUtil;
+
+    public UserDao(HibernateUtil hibernateUtil) {
+        this.hibernateUtil = hibernateUtil;
+    }
+
     /**
      * Save user
      */
     public void save(User user) {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = hibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.save(user);
             transaction.commit();
@@ -34,7 +40,7 @@ public class UserDao {
      */
     public void update(User user) {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = hibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.update(user);
             transaction.commit();
@@ -51,7 +57,7 @@ public class UserDao {
      */
     public void delete(int id) {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = hibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 
             User user = session.get(User.class, id);
@@ -74,7 +80,7 @@ public class UserDao {
     public User getById(int id) {
         Transaction transaction = null;
         User user = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = hibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             user = session.get(User.class, id);
             transaction.commit();
@@ -94,7 +100,7 @@ public class UserDao {
     public List<User> getAll() {
         Transaction transaction = null;
         List<User> users = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = hibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             users = session.createQuery("from User").getResultList();
             transaction.commit();

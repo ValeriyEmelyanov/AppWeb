@@ -29,7 +29,7 @@ public class CommandMapBuilder {
             }
         }
 
-        commandMap.forEach((k,v) -> System.out.println(k + " -> " + v.getClass().getSimpleName()));
+        commandMap.forEach((k, v) -> System.out.println(k + " -> " + v.getClass().getSimpleName()));
 
         return commandMap;
     }

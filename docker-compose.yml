@@ -1,0 +1,16 @@
+version: "3"
+services:
+  pg12-usr:
+    image: postgres:12.7
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=appusers
+    ports:
+      - "5434:5432"
+    container_name: "pg12-usr"
+  app-web:
+      build: .
+      ports:
+        - "8080:8080"
+      depends_on:
+        - pg12-usr

@@ -3,12 +3,15 @@ package com.example.appweb.web;
 import com.example.appweb.command.Command;
 import com.example.appweb.dao.UserDao;
 import com.example.appweb.util.CommandMapBuilder;
+import com.example.appweb.util.HibernateUtil;
 
-import java.io.*;
-import java.util.Map;
 import javax.servlet.ServletException;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.Map;
 
 /**
  * This servlet acts as a page controller for the application, handling all
@@ -21,7 +24,7 @@ public class UserServlet extends HttpServlet {
     private Map<String, Command> commandMap;
 
     public void init() {
-        userDao = new UserDao();
+        userDao = new UserDao(new HibernateUtil());
         commandMap = CommandMapBuilder.getCommandMap();
     }
 
